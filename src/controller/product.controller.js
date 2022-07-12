@@ -11,25 +11,25 @@ router.get("", async (req, res) => {
         return res.status(500).send({ message: err.message })
     }
 });
-router.get("/:price", async (req, res) => {
-  try {
-    // db.student.find().sort({ age: 1 });
-    const products = await Product.find().sort({ price: 1 });
-    return res.send(products);
-  } catch (err) {
-    return res.status(500).send({ message: err.message });
-  }
-});
+// router.get("/:price", async (req, res) => {
+//   try {
+//     // db.student.find().sort({ age: 1 });
+//     const products = await Product.find().sort({ price: 1 });
+//     return res.send(products);
+//   } catch (err) {
+//     return res.status(500).send({ message: err.message });
+//   }
+// });
 
-router.get("/:title", async (req, res) => {
-  try {
-    // db.student.find().sort({ age: 1 });
-    const product = await Product.find().sort({ title: 1 });
-    return res.send(product);
-  } catch (err) {
-    return res.status(500).send({ message: err.message });
-  }
-});
+// router.get("/:title", async (req, res) => {
+//   try {
+//     // db.student.find().sort({ age: 1 });
+//     const product = await Product.find().sort({ title: 1 });
+//     return res.send(product);
+//   } catch (err) {
+//     return res.status(500).send({ message: err.message });
+//   }
+// });
 
 router.post("", async (req, res) => {
     
