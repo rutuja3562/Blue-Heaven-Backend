@@ -2,17 +2,17 @@ const express = require("express");
 const cors = require("cors");
 const connect = require("./configs/db");
 const app = express();
-
+const port = process.env.PORT || 5005;
 app.use(express.json())
 app.use(cors());
 
 const productController = require("./controller/product.controller")
-const vegetableCartController = require("./controller/productcart.Controller")
+const productCartController = require("./controller/productcart.Controller")
 app.use("/product", productController);
-app.use("/productcart", vegetableCartController);
+app.use("/productcart", productCartController);
 
 
-app.listen(5005, async () => {
+app.listen(port, async () => {
     try {
         await connect();
         console.log("listing on port 5005")
