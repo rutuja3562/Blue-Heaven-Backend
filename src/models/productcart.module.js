@@ -14,5 +14,4 @@ const productCartSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("productcart", productCartSchema);
-// brand:{type:String, required:true},
+module.exports = mongoose.model("productCart", productCartSchema);

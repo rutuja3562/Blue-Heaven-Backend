@@ -5,8 +5,8 @@ const path = require("path");
 
 router.get("", async (req, res) => {
   try {
-    const productcart = await Productcart.find().lean().exec();
-    return res.send(productcart);
+    const users = await Productcart.find().lean().exec();
+    return res.send(users);
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
@@ -14,8 +14,8 @@ router.get("", async (req, res) => {
 
 router.post("", async (req, res) => {
   try {
-    const productcart = await Productcart.create(req.body);
-    return res.send(productcart);
+    const users = await Productcart.create(req.body);
+    return res.send(users);
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
@@ -23,10 +23,10 @@ router.post("", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const productcart = await Productcart.findById(req.params.id).lean().exec();
+    const user = await Productcart.findById(req.params.id).lean().exec();
 
-    if (productcart) {
-      return res.send(productcart);
+    if (user) {
+      return res.send(user);
     } else {
       return res.status(404).send({ message: "product not found" });
     }
@@ -38,17 +38,13 @@ router.get("/:id", async (req, res) => {
 // met + route => patch /users/${variable} and the name of variable is id
 router.patch("/:id", async (req, res) => {
   try {
-    const productcart = await Productcart.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
+    const user = await Productcart.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
-      }
-    )
+      })
       .lean()
       .exec();
 
-    res.status(201).send(productcart);
+    res.status(201).send(user);
   } catch (err) {
     return res.status(500).send(err.message);
   }
@@ -57,11 +53,11 @@ router.patch("/:id", async (req, res) => {
 // met + route => delete /users/${variable} and the name of variable is id
 router.delete("/:id", async (req, res) => {
   try {
-    const productcart = await Productcart.findByIdAndDelete(req.params.id)
+    const user = await Productcart.findByIdAndDelete(req.params.id)
       .lean()
       .exec();
 
-    res.send(productcart);
+    res.send(user);
   } catch (err) {
     return res.status(500).send(err.message);
   }
