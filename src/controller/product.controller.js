@@ -5,8 +5,16 @@ const path = require("path");
 
 router.get("", async (req, res) => {
   try {
-    const vegetables = await Products.find().lean().exec();
-    return res.send(vegetables);
+    const page = req.query.page || 1;
+    const perpage = req.query.perpage || 8;
+    const skip = (page - 1) * perpage;
+    const vegetables = await Products.find()
+      .skip(skip)
+      .limit(perpage)
+      .lean()
+      .exec();
+    const totalPages = Math.ceil(await Products.find().countDocuments()/perpage);
+    return res.send({ vegetables, totalPages });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
